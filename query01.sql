@@ -4,9 +4,7 @@
   of the 800 meter buffer.
 */
 
-with
-
-septa_bus_stop_blockgroups as (
+with septa_bus_stop_blockgroups as (
     select
         stops.stop_id,
         '1500000US' || bg.geoid as geoid
@@ -23,6 +21,7 @@ septa_bus_stop_surrounding_population as (
     inner join census.population_2020 as pop using (geoid)
     group by stops.stop_id
 )
+select * from septa_bus_stop_surrounding_population;  -- Add a SELECT statement here
 
 select
     stops.stop_name,
